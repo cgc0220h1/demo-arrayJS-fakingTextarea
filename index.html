@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faking Textarea</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h2 style="text-align: center">Hãy gõ thật chậm</h2>
+<textarea cols="100" rows="10" id="textHere" onkeydown="fakeText()"></textarea>
+<script>
+    function fakeText() {
+        let input = document.getElementById('textHere').value;
+        let strings = ["X", "i", "n", "c", "h", "à", "o"];
+        let result = "";
+        if (input.length > 0) {
+            for (let i = 0; i < input.length; i++) {
+                result = result + strings[i];
+                if (i === 7) {
+                    document.getElementById('textHere').value = "";
+                    result = "";
+                }
+            }
+        }
+        document.getElementById('textHere').value = result;
+        result = "";
+        setTimeout("fakeText()", 1);
+    }
+</script>
+</body>
+</html>
